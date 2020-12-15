@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { AccuWeatherForecast } from './types'
 
-const API_ADDRESS = 'http://dataservice.accuweather.com'
+const API_ADDRESS = 'https://dataservice.accuweather.com'
 
 const instance = axios.create({
   baseURL: API_ADDRESS,
@@ -19,7 +19,8 @@ export const getDailyForecast = (cityId: number) => {
     `/forecasts/v1/daily/5day/${cityId}`,
     {
       params: {
-        apikey: process.env.ACCUWEATHER_API_KEY,
+        apikey: process.env.REACT_APP_ACCUWEATHER_API_KEY,
+        metric: true,
       },
     }
   )

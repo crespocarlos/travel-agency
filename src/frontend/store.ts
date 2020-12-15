@@ -1,6 +1,6 @@
-import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
+import { applyMiddleware, createStore, combineReducers } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 import forecast from './forecast/lib/reducers/forecast'
 import { loadState } from './localStorage'

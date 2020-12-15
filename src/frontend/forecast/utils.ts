@@ -14,9 +14,10 @@ export const getIcon = (iconId: number) => {
     case 5:
     case 6:
     case 7:
-    case 9:
     case 8:
+    case 9:
       return 'wi-day-cloudy'
+    case 10:
     case 11:
       return 'wi-day-fog'
     case 12:

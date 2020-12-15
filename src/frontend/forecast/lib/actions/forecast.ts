@@ -38,6 +38,8 @@ export const fetchCitiesForecast = (): ForecastThunk<void> => async (
         forecast: { ...getAllCitiesForecast(getState()) },
       })
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(err)
       dispatch({
         type: Forecast.SET_CITY_FORECAST_LOAD_ERROR,
         cityId,

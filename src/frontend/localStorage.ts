@@ -1,4 +1,4 @@
-import { addHours, parse, isAfter, parseISO } from 'date-fns'
+import { addHours, parseISO, isAfter } from 'date-fns'
 
 import { ReduxState } from './redux-types'
 
@@ -15,10 +15,11 @@ export const loadState = (): State | undefined => {
       return undefined
     }
     const parsedState: StoredState = JSON.parse(serializedState)
+
     if (
       parsedState &&
       isAfter(
-        addHours(parseISO(parsedState.persisted), 24),
+        addHours(parseISO(parsedState.persisted), 4),
         new Date().getTime()
       )
     ) {
@@ -33,7 +34,7 @@ export const saveState = (state: ReduxState) => {
   try {
     const serializedState = JSON.stringify({
       state,
-      persisted: new Date().toUTCString(),
+      persisted: new Date().toISOString(),
     })
     localStorage.setItem('state', serializedState)
   } catch {
