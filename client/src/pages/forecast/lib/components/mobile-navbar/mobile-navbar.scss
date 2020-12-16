@@ -1,0 +1,40 @@
+@import '../../../variables.scss';
+
+.mobile-navbar {
+  position: sticky;
+  top: 0;
+  text-transform: uppercase;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 1px solid $color-light-grey;
+  height: 50px;
+  margin: 0;
+  padding: 0px 20px;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+
+  @media only screen and (min-width: 912px) {
+    display: none;
+  }
+
+  &__item {
+    border-top: 3px solid transparent;
+    cursor: pointer;
+    display: flex;
+    height: 15px;
+    overflow: hidden;
+    padding: 15px 0;
+    text-align: center;
+    color: $color-dark-grey;
+    transition: color .1s cubic-bezier(.3,0,.45,1);
+
+    &:hover {
+      border-bottom: 3px solid #000;
+    }
+
+    &--active {
+      color: $color-black;
+    }
+  }
+}

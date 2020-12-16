@@ -6,9 +6,12 @@ before_install:
   - curl https://cli-assets.heroku.com/install.sh | sh
   - docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY registry.heroku.com
 
+## there should be a stage here to execute tests
 script:
-    - docker build -t ccrespo/travel-agency .
+    - docker build -t ccrespo/travel-agency -f Dockerfile.client .
     - docker tag ccrespo/travel-agency registry.heroku.com/$HEROKU_APP/web 
+    - docker build -t ccrespo/travel-agency-api -f Dockerfile.server .
+    - docker tag ccrespo/travel-agency-api registry.heroku.com/$HEROKU_APP_API/web 
 
 deploy:
   provider: script
@@ -16,3 +19,6 @@ deploy:
     docker push ccrespo/travel-agency;
     docker push registry.heroku.com/$HEROKU_APP/web;
     heroku container:release web --app $HEROKU_APP;
+    docker push ccrespo/travel-agency-api;
+    docker push registry.heroku.com/$HEROKU_APP_API/web;
+    heroku container:release web --app $HEROKU_APP_API;

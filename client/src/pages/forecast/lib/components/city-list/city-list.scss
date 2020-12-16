@@ -1,0 +1,46 @@
+@import '../../../variables.scss';
+
+.city-list {
+
+  &__content {
+    padding: 20px 20px 40px;
+
+    @media only screen and (min-width: 600px) {
+      padding: 20px 60px 40px;
+    }
+
+    @media only screen and (min-width: 1200px) {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media only screen and (min-width: 1440px){
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    @media only screen and (min-width: 1680) {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    &__wrapper {
+
+      margin-top: 40px;
+
+      hr {
+        margin-top: 30px;
+        border: 0;
+        height: 0;
+        border-top: 1px solid rgba($color-black, 0.1);
+        border-bottom: 1px solid rgba($color-light-grey, 0.3);
+    
+        &:last-of-type {
+          display: none;
+        }
+    
+      }
+    }
+
+  }
+}

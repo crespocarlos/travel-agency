@@ -1,0 +1,17 @@
+
+FROM node:12.18.3-buster-slim as builder
+
+WORKDIR /app
+
+COPY package.json yarn.lock .eslintrc.js tsconfig.json .prettierrc ./
+COPY client/ ./client
+
+RUN yarn config set strict-ssl false 
+RUN yarn install --frozen-lockfile --prefer-offline
+
+RUN yarn build:client
+
+FROM nginx
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
+COPY --from=0 /app/client/build /usr/share/nginx/html
+CMD /bin/bash -c "envsubst '\$PORT \$API_ADDRESS' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
